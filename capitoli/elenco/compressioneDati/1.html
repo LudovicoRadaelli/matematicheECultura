@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script> 
+    <link rel="stylesheet" href="../../../css/style.css">
+    <title>Compiti per casa</title>
+</head>
+<body>
+    
+    <br>
+
+
+    <h3 class="yellow">Codifica di Huffman</h3>
+    <div class="esempi-container">
+        <b>Codifica di un messaggio</b>
+        <br>
+        <br>        
+        Durante un compito a crocette volete suggerire la seguente sequenza di risposte corrette ad un vostro compagno:
+        \[
+            A \quad A \quad C \quad B \quad D \quad A \quad C \quad A 
+        \] 
+        Dato che se il vostro messaggio venisse intercettato incorrereste in un inesorabile \(2\), volete 
+        adottare un codice segreto. Decidete di assegnare ad ogni carattere una sequenza di 0 ed 1.
+        <br>
+        Vediamo qualche esempio.
+
+        <br>
+        <br>
+
+        <b class="gray" style="font-size: 1.1rem;">Primo esempio</b> 
+        <br>
+        <br>       
+        <table style="color: gray; border: gray;">
+            <tr>
+                <th style="color: gray; border: gray solid 0.01rem">Carattere</th>
+                <th style="color: gray; border: gray solid 0.01rem">Codice</th>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">A</td>
+                <td style="color: gray; border: gray solid 0.01rem">1000</td>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">B</td>
+                <td style="color: gray; border: gray solid 0.01rem">0100</td>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">C</td>
+                <td style="color: gray; border: gray solid 0.01rem">0010</td>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">D</td>
+                <td style="color: gray; border: gray solid 0.01rem">0001</td>
+            </tr>
+        </table>
+
+        <br>
+
+        La codifica del messaggio è 
+        \[
+            10001000001001000001100000101000
+        \]
+        Infatti si ha
+        <div class="formula">
+            \[
+                \color{red}{}\underset{A}{{1\,0\,0\,0\,}}
+                \color{black}{}\underset{A}{{1\,0\,0\,0\,}}
+                \color{red}{}\underset{C}{{0\,0\,1\,0\,}}
+                \color{black}{}\underset{B}{{0\,1\,0\,0\,}}
+                \color{red}{}\underset{D}{{0\,0\,0\,1\,}}
+                \color{black}{}\underset{A}{{1\,0\,0\,0\,}}
+                \color{red}{}\underset{C}{{0\,0\,1\,0\,}}
+                \color{black}{}\underset{A}{{1\,0\,0\,0}} 
+            \]
+        </div>
+        In tutto il messaggio codificato pesa \(32 \, bit\). 
+        <br>
+        Proviamo a elaborare una codifica che 
+        ci permetta di "risparmiare" sul peso del messaggio: vorremmo minimizzare la sequenza di \(0\) ed \(1\) che 
+        formano il messaggio in codice.
+
+        <br>
+        <br>
+        <b class="gray" style="font-size: 1.1rem;">Secondo esempio</b>        
+        <br>
+        <br>
+        <table style="color: gray; border: gray;">
+
+                <tr>
+                    <th style="color: gray; border: gray solid 0.01rem">Carattere</th>
+                    <th style="color: gray; border: gray solid 0.01rem">Codice</th>
+                </tr>
+                <tr>
+                    <td style="color: gray; border: gray solid 0.01rem">A</td>
+                    <td style="color: gray; border: gray solid 0.01rem">00</td>
+                </tr>
+                <tr>
+                    <td style="color: gray; border: gray solid 0.01rem">B</td>
+                    <td style="color: gray; border: gray solid 0.01rem">01</td>
+                </tr>
+                <tr>
+                    <td style="color: gray; border: gray solid 0.01rem">C</td>
+                    <td style="color: gray; border: gray solid 0.01rem">10</td>
+                </tr>
+                <tr>
+                    <td style="color: gray; border: gray solid 0.01rem">D</td>
+                    <td style="color: gray; border: gray solid 0.01rem">11</td>
+                </tr>
+        </table>
+
+        <br>
+
+        La codifica del messaggio è 
+        \[
+            0\,0\,0\,0\,1\,0\,0\,1\,1\,1\,0\,0\,1\,0\,0\,0
+        \]
+        Infatti si ha
+        <div class="formula">
+            \[
+              \color{red}{}\underset{A}{{0\,0\,}}
+                \color{black}{}\underset{A}{{0\,0\,}}
+                \color{red}{}\underset{C}{{1\,0\,}}
+                \color{black}{}\underset{B}{{0\,1\,}}
+                \color{red}{}\underset{D}{{1\,1\,}}
+                \color{black}{}\underset{A}{{0\,0\,}}
+                \color{red}{}\underset{C}{{1\,0\,}}
+                \color{black}{}\underset{A}{{0\,0}} 
+            \]
+        </div>
+        In tutto il messaggio che inviamo è di \(8 \, bit\). Decisamente meglio rispetto alla codifica precedente!
+        Possiamo fare di meglio?
+        <br>
+        <br>
+        Nei due esempi precedenti le codifiche dei caratteri avevano lo stesso numero di \(bit\). 
+        Se vogliamo abbassare il peso della codifica potremmo assegnare un codice da  \(1 \, bit\) a 
+        qualcuno tra i caratteri.
+        <br>
+        <br>
+        Pensate: quali caratteri assegnereste la codifica da \(1 \, bit\)?
+
+        <br>
+        <br>
+
+        <button id="hint1-button" onclick="showHint(1)">Mostra risposta</button>
+        <div id="hint1" class="hint" style="display: none;">     
+            Ma certo, ai carattere che compaiono con maggiore frequenza nel messaggio che dobbiamo 
+            inviare! Nel nostro caso la lettera \(A\), che compare \(4\) volte, e la lettera \(C\), che compare \(2\) volte.
+        </div>
+
+        <br>        
+        <b class="gray" style="font-size: 1.1rem;">Terzo esempio</b>     
+        <br>
+        <br>          
+        <table style="color: gray; border: gray;">
+
+            <tr>
+                <th style="color: gray; border: gray solid 0.01rem">Carattere</th>
+                <th style="color: gray; border: gray solid 0.01rem">Codice</th>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">A</td>
+                <td style="color: gray; border: gray solid 0.01rem">0</td>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">B</td>
+                <td style="color: gray; border: gray solid 0.01rem">01</td>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">C</td>
+                <td style="color: gray; border: gray solid 0.01rem">1</td>
+            </tr>
+            <tr>
+                <td style="color: gray; border: gray solid 0.01rem">D</td>
+                <td style="color: gray; border: gray solid 0.01rem">10</td>
+            </tr>
+        </table>
+
+        <br>
+
+        La codifica del messaggio è         
+        \[
+            0\,0\,1\,01\,10\,0\,1\,0
+        \]
+        
+        C'è un problema... questo messaggio può essere decodificato in vari modi:
+        <div class="formula">
+            \[
+                \color{red}{}\underset{A}{{0\,}}
+                \color{black}{}\underset{B}{{0\,1\,}}
+                \color{red}{}\underset{B}{{0\,1\,}}
+                \color{black}{}\underset{C}{{1\,}}
+                \color{red}{}\underset{A}{{0\,}}
+                \color{black}{}\underset{B}{{0\,1\,}}
+                \color{red}{}\underset{A}{{0}}                
+            \]
+        </div>
+        ma anche 
+        <div class="formula">            
+            \[
+                \color{red}{}\underset{A}{0\,}
+                \color{black}{}\underset{A}{0\,}
+                \color{red}{}\underset{D}{1\,0\,}
+                \color{black}{}\underset{C}{1\,}
+                \color{red}{}\underset{D}{1\,0\,}
+                \color{black}{}\underset{A}{0\,}
+                \color{red}{}\underset{C}{1\,}       
+                \color{black}{}\underset{A}{0}         
+            \]
+        </div>            
+        
+        Chi ricevesse questa sequenza si ritroverbbe di fronte ad dilemma: qual è la decodifica corretta?
+        Mi sono state suggerite le prime sette risposte corrette o le prime otto?
+        <br>
+        <br>
+        Questo esempio ci mostra che se vogliamo usare una codifica a lunghezza variabile dobbiamo stare attenti: 
+        al contrario della codifica a lunghezza costante, l'<b>unicità di decodifica</b> non è più garantita.
+        
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+
+        <b>Codifica di Huffman</b>
+        <br>
+        <br>
+        Nel 1952 Huffman, allora studente di ingegneria al MIT, elaborò un algoritmo che permette di ottenere una <b>codifica ottimale</b>
+        del messaggio che si desidera inviare.
+        Applichiamolo al nostro esempio.
+
+        <br>
+        <br>
+
+        <div class="slide-container grayBorder">
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(1).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(2).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(3).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(4).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(5).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(6).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(7).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(8).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(9).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(10).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Per prima cosa scriviamo le frequenze con le quali si presentato 
+                i caratteri nel messaggio che dobbiamo inviare.
+                <br>
+                <br>
+                <img src="img/1(11).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Ora disponiamo i caratteri in ordine decrescente rispetto alla frequenza.
+                <br>
+                <br>
+                <img src="img/1(11).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Ora disponiamo i caratteri in ordine decrescente rispetto alla frequenza.
+                <br>
+                <br>
+                <img src="img/1(12).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Selezioniamo i due elementi con frequenza minore.
+                <br>
+                <br>
+                <img src="img/1(12).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Selezioniamo i due elementi con frequenza minore.
+                <br>
+                <br>
+                <img src="img/1(13).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Rendiamoli foglie di un albero binario.
+                <br>
+                <br>
+                <img src="img/1(13).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Rendiamoli foglie di un albero binario.
+                <br>
+                <br>
+                <img src="img/1(14).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Rendiamoli foglie di un albero binario.
+                <br>
+                <br>
+                <img src="img/1(15).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Assegnamo al nodo una frequenza pari alla somma delle frequenze delle foglie.
+                <br>
+                <br>
+                <img src="img/1(15).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Assegnamo al nodo una frequenza pari alla somma delle frequenze delle foglie.
+                <br>
+                <br>
+                <img src="img/1(16).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Reinseriamo il nodo nella lista dei caratteri.
+                <br>
+                <br>
+                <img src="img/1(16).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Reinseriamo il nodo nella lista dei caratteri.
+                <br>
+                <br>
+                <img src="img/1(17).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(17).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(18).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(19).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(20).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Reinseriamo il nodo nella lista dei caratteri.
+                <br>
+                <br>
+                <img src="img/1(20).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Reinseriamo il nodo nella lista dei caratteri.
+                <br>
+                <br>
+                <img src="img/1(21).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(21).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(22).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(23).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                La lista è già in ordine descrescente rispetto alle frequenze. Selezioniamo i due elementi con frequenza minore ed inseriamoli nell'albero.
+                <br>
+                <br>
+                <img src="img/1(24).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(24).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(25).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(26).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(27).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(28).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(29).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(30).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(31).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Questo è l'<b>albero di Huffman</b>. 
+                <br>
+                Per ottenere le codifiche dei caratteri guardiamo 
+                il percorso dalla radice dell'albero a ciascuna delle foglie. Ogni volta che il ramo va verso 
+                sinistra inseriamo uno \(0\), mentre se va verso destra inseriamo un \(1\).
+                <br>
+                <br>
+                <img src="img/1(32).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Abbiamo ottenuto una codifica per ciascun carattere.
+                <br>
+                <br>
+                <img src="img/1(32).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Abbiamo ottenuto una codifica per ciascun carattere.
+                <br>
+                <br>
+                <img src="img/1(33).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Abbiamo ottenuto una codifica per ciascun carattere. Codifichiamo il messaggio.
+                <br>
+                <br>
+                <img src="img/1(33).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Abbiamo ottenuto una codifica per ciascun carattere. Codifichiamo il messaggio.
+                <br>
+                <br>
+                <img src="img/1(34).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Abbiamo ottenuto una codifica per ciascun carattere. Codifichiamo il messaggio.
+                <br>
+                <br>
+                <img src="img/1(35).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Abbiamo ottenuto una codifica per ciascun carattere. Codifichiamo il messaggio.
+                <br>
+                <br>
+                <img src="img/1(36).png" style="border: 0;">
+            </div>            
+            <div class="slide1">
+                Osservimo che la decodifica del messaggio è <b>unica</b>. 
+                <br>
+                <br>
+                <img src="img/1(36).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Osservimo che la decodifica del messaggio è <b>unica</b>. 
+                <br>
+                <br>
+                <img src="img/1(37).png" style="border: 0;">
+            </div>
+            <div class="slide1">
+                Osservimo che la decodifica del messaggio è <b>unica</b>. Provare per credere! Decodificate il messaggio.
+                <br>
+                <br>
+                <img src="img/1(37).png" style="border: 0;">
+            </div>
+        </div>
+        <div style="display: flex; flex-direction:row; justify-content: space-evenly; align-items: center;">
+            <button id="previousSlide-button1" onclick="previousSlide(1)">Indietro</button>
+            <button id="nextSlide-button1" onclick="nextSlide(1)">Avanti</button>
+        </div> 
+         
+    
+
+    </div>
+
+
+    
+    <br>
+    <br>
+    
+    <script src="../../../js/hintAndSlide.js"></script>
+</body>
