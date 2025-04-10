@@ -11,13 +11,73 @@
     <title>Compiti per casa</title>
 </head>
 <body>
+    <script>
+        let estrazioni = [];
+        let side;
+        let vincite;
+        let cnv;
+        let simulaBool;
+
+        function setup() {
+            let canvas = document.getElementById("canvas");
+            cnv = createCanvas(canvas.offsetWidth, canvas.offsetWidth);
+            cnv.parent("canvas")            
+            background(255);
+            side = 7*width/8;       
+            for(let i = 0; i < 20; i++) {
+                for(let j = 0; j < 20; j++) {      
+                    fill("gray");
+                    text("?", side/16 + i*side/20, side/16 + j*side/20);
+                }
+            }                                                     
+        }
+
+        function draw() {            
+            if(simulaBool) {
+                vincite = 0;
+                estrazioni = [];
+                for(let i = 0; i < 400; i++) {
+                    estrazioni.push(random([0,1]));
+                    if(estrazioni[i] === 0) {
+                    vincite++;
+                    }
+                }  
+
+                background(255); 
+                textStyle(BOLD) 
+                textSize(14) 
+                noStroke()
+                for(let i = 0; i < 20; i++) {
+                    for(let j = 0; j < 20; j++) {      
+                        if(estrazioni[20*i + j] === 0) {
+                            fill("#F44336");
+                            text("T", side/16 + i*side/20, side/16 + j*side/20);
+                        } else {
+                            fill("#2196F3");
+                            text("C", side/16 + i*side/20, side/16 + j*side/20);
+                        }
+                        
+                    }
+                }    
+                simulaBool = false;               
+                document.getElementById("T").innerHTML = vincite;
+                document.getElementById("C").innerHTML = 400 - vincite;
+            }
+            
+            
+        }
+
+        function simula() {
+            simulaBool = true  
+        }        
+    </script>
     
     <br>
 
 
     <h3 class="yellow">Valore atteso di una variabile aleatoria</h3>
-    <div class="esempi-container gray">
-        <div id="avviso" class="grayBorder" style="font-size: 1.1rem; position: sticky; top: 0; max-height: 90vh;">
+    <div class="esempi-container">
+        <div id="avviso" class="grayBorder gray" style="font-size: 1.1rem; position: sticky; top: 0; max-height: 90vh; background-color: white;">
             ⚠️⚠️⚠️ In questo capitolo vengono analizzati alcuni giochi d'azzardo, con l'obiettivo di <b>scoraggiarvi</b> dal partecipare ad essi.
             <br>
             <br>
@@ -40,119 +100,548 @@
                 let avviso = document.getElementById("avviso");
                 avviso.style.display = "none";
             }
-        </script>
-        
+        </script>    
+
+        <b>Esempio 1</b>
+        <br>
+        Lancio una moneta. 
         <br>
         <br>
+        <ul>
+            <li>
+                Se esce testa, vincete dieci euro. 
+            </li>
+            <br>
+            <li>
+                Se esce croce, perdete due euro. 
+            </li>
+        </ul>        
         <br>
+        <br>
+        Indichiamo con \(X\) il guadagno ottenuto ad una singola partita. Diremo che \(X\) è una <b>variabile aleatoria</b>, ovvere una quantità 
+        che può assumere diversi valori, ognuno con una certa probabilità \(p\).
+        <br>
+        <br>
+        <table style="width: 50%;">
+            <tr>
+                <th>\(X\)</th>
+                <td>\(10\,\)&euro;</td>
+                <td>\(-2\,\)&euro;</td>
+            </tr>
+            <tr>
+                <th>\(p\)</th>
+                <td>\(\frac{1}{2}\)</td>
+                <td>\(\frac{1}{2}\)</td>
+            </tr>
+        </table>
+        <br>        
+        Se giochiamo tante partite, diciamo quattrocento, <b>quanto vi aspettate di vincere in media ad ogni partita</b>?
 
         <br>
         <br>
-        <br>
 
-        <br>
-        <br>
-        <br>
+        Proviamo a simulare i lanci. 
 
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-        
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-        
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
         <br>
         <br>
         
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-        
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <div id="canvas" style="width: 100%; margin: auto;"></div>
+        </div>
         
         <br>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;">
+            <div style="width: fit-content; color: #F44336;">
+                <span><b>T: </b></span><span id="T">\(\)</span> 
+            </div>
+            <div style="width: fit-content; color: #2196F3;">
+                <span><b>C: </b></span><span id="C">\(\)</span>
+            </div>
+        </div>
         <br>
         <br>
+
+        <button onclick="simula()">Nuova simulazione</button>
+
+        <br>
+        <br>
+
+        Osserviamo che ad ogni simulazione il numero di volte in cui esce testa corrisponde <i>grossomodo</i> alla metà dei lanci.
+        <br>
+        Sembra ragionevole aspettarsi di vincere dieci euro per metà delle partite e di perdere due euro per metà delle partite.
+        Il totale guadagnato atteso è quindi
+        \[
+            \begin{align*}
+                \color{transparent}{}\dfrac{\color{black}{}\text{guadagno totale}}{\color{black}{}\text{atteso}} &= \color{#F44336}{}10\color{black}{} \cdot 200 + \color{#2196F3}{}(-2)\color{black}{} \cdot 200 
+                \\\\
+                &= 2000 - 400 
+                \\\\
+                &= 1600
+            \end{align*}
+        \]
+        Se dividiamo per quattorcento "spalmiamo" il guadagno totale sulle partite effettuate. In questo modo otteniamo la vincita media che ci aspettiamo ad ogni partita.
+        \[
+            \begin{align*}
+                \color{transparent}{}\dfrac{\color{black}{}\text{guadagno medio}}{\color{black}{}\text{atteso}} &= \dfrac{1600}{400} 
+                \\\\
+                &= 4
+            \end{align*}
+        \]
+        Osserviamo che è possibile esprimere quest'ultimo calcolo in termini della probabilità che esca testa (\(\frac{1}{2}\)) e di quella che esca croce (\(\frac{1}{2}\)).
+        \[
+            \begin{align*}
+                \color{transparent}{}\dfrac{\color{black}{}\text{guadagno medio}}{\color{black}{}\text{atteso}} &= \dfrac{\color{#F44336}{}10\color{black}{} \cdot 200 + \color{#2196F3}{}(-2)\color{black}{} \cdot 200}{400}                 
+                \\\\
+                &= \color{#F44336}{}10\color{black}{} \cdot \dfrac{200}{400}  + \color{#2196F3}{}(-2)\color{black}{} \cdot \dfrac{200}{400} 
+                \\\\
+                &= \color{#F44336}{}10\color{black}{} \cdot \dfrac{1}{2}  + \color{#2196F3}{}(-2)\color{black}{} \cdot \dfrac{1}{2} 
+                
+            \end{align*}        
+        \]
+
+        Quello che abbiamo appena calcolato è il <b>valore atteso</b> della variabile aleatoria \(X\). Lo indicheremo con il simbolo \(\mathbb{E}[X]\)
 
         <br>
         <br>
         <br>
+        <hr>
+        <br>
+        <br>
+
+        <b>Esempio 2</b>
+        <br>
+        Consideriamo un gioco simile al precedente. Questa volta ad ogni partita lancio un dado.
+        <br>
+        <br>
+        <ul>
+            <li>
+                Se esce \(6\), vincete \(15\,\)&euro;.
+            </li>
+            <br>
+            <li>
+                Se escono \(5\), \(4\), \(3\) o \(2\) perdete \(2\,\)&euro;.
+            </li>
+            <br>
+            <li>
+                Se esce \(1\), la partita va in pareggio, ovvero vincete \(0\,\)&euro;. 
+            </li>
+        </ul>
+
+        <br>        
+
+        Realizziamo anche per questo gioco una tabella con i guadagni che possiamo ottenere ad ogni partita e la probabilità con la quale li 
+        otteniamo.
 
         <br>
         <br>
+        <table style="width: 50%;">
+            <tr>
+                <th>\(X\)</th>
+                <td>\(15\,\)&euro;</td>
+                <td>\(-2\,\)&euro;</td>
+                <td>\(0\,\)&euro;</td>
+            </tr>
+            <tr>
+                <th>\(p\)</th>
+                <td>\(\frac{1}{6}\)</td>
+                <td>\(\frac{4}{6}\)</td>
+                <td>\(\frac{1}{6}\)</td>
+            </tr>
+        </table>
+
         <br>
         
-        <br>
-        <br>
-        <br>
-
-        <br>
+        Se giochiamo tante partite, quattrocento, <b>quanto vi aspettate di vincere in media ad ogni partita</b>?
         <br>
         <br>
 
+        Utilizziamo la tabella per calcolare il valore atteso associato al guadagno \(X\): 
+
         <br>
         <br>
+
+        <div class="slide-container grayBorder">
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = \color{transparent}{}15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(\color{red}{}15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = \color{transparent}{}15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = \color{red}{}15 \color{transparent}{} \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\color{red}{}\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \color{transparent}{} \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \color{red}{} \frac{1}{6} \color{transparent}{}+ (-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + \color{transparent}{}(-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(\color{red}{}-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + \color{transparent}{}(-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + \color{red}{}(-2)\color{transparent}{} \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\color{red}{}\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2)\color{transparent}{} \cdot \frac{4}{6} + 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2) \cdot \color{red}{}\frac{4}{6} \color{transparent}{}+ 0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + \color{transparent}{}0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(\color{red}{}0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + \color{transparent}{}0 \cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + \color{red}{}0 \color{transparent}{}\cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\color{red}{}\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \color{transparent}{}\cdot \frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \mathbb{E}[X] = 15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \cdot \color{red}{}\frac{1}{6}
+                \]
+            </div>
+            <div class="slide1">
+                <table style="width: 50%;">
+                    <tr>
+                        <th>\(X\)</th>
+                        <td>\(15\,\)&euro;</td>
+                        <td>\(-2\,\)&euro;</td>
+                        <td>\(0\,\)&euro;</td>
+                    </tr>
+                    <tr>
+                        <th>\(p\)</th>
+                        <td>\(\frac{1}{6}\)</td>
+                        <td>\(\frac{4}{6}\)</td>
+                        <td>\(\frac{1}{6}\)</td>
+                    </tr>
+                </table>
+    
+                \[
+                    \begin{align*}{}
+                        \mathbb{E}[X] &= 15 \cdot \frac{1}{6} + (-2) \cdot \frac{4}{6} + 0 \cdot \frac{1}{6} = 
+                        \\\\
+                        &\approx 1.16
+    
+                    \end{align*}{}
+                \]
+            </div>
+    
+        </div>
+        <div style="display: flex; flex-direction:row; justify-content: space-evenly; align-items: center;">
+            <button id="previousSlide-button1" onclick="previousSlide(1)">Indietro</button>
+            <button id="nextSlide-button1" onclick="nextSlide(1)">Avanti</button>
+        </div> 
+
         <br>
         
-        <br>
-        <br>
-        <br>
+        In altre parole giocando tante partite ci aspettiamo di vincere in media \(1.16 \,\)&euro; a partita.
 
         <br>
         <br>
         <br>
 
-        <br>
-        <br>
-        <br>
+        <div class="grayBackground">
+            Consideriamo una variabile aleatoria \(X\) che 
+            <br>
+            <br>
+            <ul>
+                <li>
+                    assume valore \(x_1\,\) con probabilità \(p_1\,\), 
+                </li>
+                <br>
+                <li>
+                    assume  valore \(x_2\,\) con probabilità \(p_2\,\) 
+                </li>                
+                <br>
+                <li>
+                    \(\cdots\)
+                </li>       
+                <br>
+                <li>
+                    assume  valore \(x_n\,\) con probabilità \(p_n\,\) 
+                </li>         
+            </ul>
+            
+            <br>
+
+            Il <b>valore atteso</b> di \(X\) è 
+            \[
+                \mathbb{E}[X] = x_1 \cdot p_1 + x_2 \cdot p_2 + \cdots + x_n \cdot p_n 
+            \]        
         
-    </div>
+                
+        
 
+            
+            
+            
+            
+            
+        </div>
+    </div>    
+    
 
     
     <br>
