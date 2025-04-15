@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.min.js"></script> 
+    <link rel="stylesheet" href="../../../css/style.css">
+    <title>Compiti per casa</title>
+</head>
+<body>
+        
+    <h3 class="yellow">Informazione</h3>
+    <div class="esempi-container">                
+        <b>Esempio 1</b>
+        <br>
+        <br>
+        Indovinello: il box rappresentato in figura ha \(8\) cassetti. 
+        In uno di essi ho nascosto una pallina. 
+        Per indovinarne la posizione potete pormi <i>esclusivamente</i> domande che ammettano come risposte "sì" oppure "no".
+        <br>
+        Qual è il <b>minimo numero di domande</b> che potete rivolgermi?
+        <br>
+        <br>
+        <img src="img/3/ottoCassetti.png" style="width: 30%; margin: auto; border: 0;">
+        <br>
+        Una tattica sicuramente poco efficace è quella esaminare cassetto per cassetto: <i>"si trova nel primo?"</i>, <i>"si trova nel secondo?"</i>, <i>"si trova nel terzo?"</i>. 
+        Nel caso peggiore, dovreste rivolgermi ben \(8\) domande.
+        <br>
+        Vediamo la strategia più efficente.
+
+        <br>
+        <br>
+
+        <div class="slide-container grayBorder">
+            <div class="slide1">
+                <img src="img/3/1(1).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>        
+            <div class="slide1">
+                <img src="img/3/1(1).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>     
+            <div class="slide1">
+                <img src="img/3/1(1).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>  
+            <div class="slide1">
+                <img src="img/3/1(2).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>        
+            <div class="slide1">
+                <img src="img/3/1(2).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>      
+            <div class="slide1">
+                <img src="img/3/1(2).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>       
+            <div class="slide1">
+                <img src="img/3/1(3).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>  
+            <div class="slide1">
+                <img src="img/3/1(3).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>        
+            <div class="slide1">
+                <img src="img/3/1(3).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+            </div>        
+            <div class="slide1">
+                <img src="img/3/1(4).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+            </div>    
+            <div class="slide1">
+                <img src="img/3/1(5).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>            
+            </div>   
+            <div class="slide1">
+                <img src="img/3/1(5).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+                <br>            
+                Pallina trovata! Sono state sufficienti \(3\) domande.
+            </div>        
+        </div>
+        <div style="display: flex; flex-direction:row; justify-content: space-evenly; align-items: center;">
+            <button id="previousSlide-button1" onclick="previousSlide(1)">Indietro</button>
+            <button id="nextSlide-button1" onclick="nextSlide(1)">Avanti</button>
+        </div> 
+
+         <br>
+        
+         Osserviamo che la probabilità che la pallina si trovasse nella posizione assegnata è \(\frac{1}{8}\).
+         <br>
+         <br>
+         <br>
+         <hr>
+         <br>
+         <br>
+         <b>Esempio 2</b>
+         <br>
+         <br>
+         Vediamo come cambia la situazione se aumentiamo il numero dei cassetti a \(16\).
+         <br>
+         <br>
+
+         <div class="slide-container grayBorder">
+            <div class="slide2">
+                <img src="img/3/2(1).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>   
+            <div class="slide2">
+                <img src="img/3/2(1).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>                
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>    
+            <div class="slide2">
+                <img src="img/3/2(1).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>                
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>      
+            <div class="slide2">
+                <img src="img/3/2(2).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>
+            <div class="slide2">
+                <img src="img/3/2(2).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>                
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>  
+            <div class="slide2">
+                <img src="img/3/2(2).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>                
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>  
+            <div class="slide2">
+                <img src="img/3/2(3).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>        
+            <div class="slide2">
+                <img src="img/3/2(3).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>     
+            <div class="slide2">
+                <img src="img/3/2(3).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>
+            <div class="slide2">
+                <img src="img/3/2(4).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>                
+                    <br>
+                    <li style="visibility: hidden;">
+                        <i style="color: transparent;">"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div> 
+            <div class="slide2">
+                <img src="img/3/2(4).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b style="color: transparent;"><i>No</i></b>
+                    </li>
+                </ol>
+            </div>
+            <div class="slide2">
+                <img src="img/3/2(4).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+            </div>   
+            <div class="slide2">
+                <img src="img/3/2(5).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+            </div>   
+            <div class="slide2">
+                <img src="img/3/2(6).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+            </div>  
+            <div class="slide2">
+                <img src="img/3/2(6).png" style="width: 40%; border: 0;">
+                <br>
+                <ol>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>Sì</i></b>
+                    </li>
+                    <br>
+                    <li>
+                        <i>"La pallina superiore si trova nella metà superiore?"</i> <b><i>No</i></b>
+                    </li>
+                    <br>                
+                    <li>
+                        <i>"La pallina superiore si trova nella metà sinistra?"</i> <b><i>No</i></b>
+                    </li>
+                </ol>
+                <br>            
+                Pallina trovata! Questa volta sono state sufficienti \(4\) domande.
+            </div>   
+    
+        </div>
+        <div style="display: flex; flex-direction:row; justify-content: space-evenly; align-items: center;">
+            <button id="previousSlide-button2" onclick="previousSlide(2)">Indietro</button>
+            <button id="nextSlide-button2" onclick="nextSlide(2)">Avanti</button>
+        </div> 
+         
+        <br>
+        
+         Osserviamo che la probabilità che la pallina si trovasse nella posizione assegnata è \(\frac{1}{16}\).
+         
+         <br>
+         <br>
+         <br>
+         <hr>
+         <br>         
+
+         Riassumiamo:         
+         <br>
+         <br>
+         <ul>
+            <li>
+                Nel primo esempio la probabilità che la pallina si trovasse nella posizione assegnata era \(\frac{1}{8}\).
+                Per individuare la pallina sono state sufficienti \(3\) domande.
+                <div class="formula">
+                    \[
+                        p = \dfrac{1}{8} = \dfrac{1}{2^{\color{red}{}3}}\color{black}{} \,\,\Longrightarrow\,\, \#\text{domande} = \color{red}{3}
+                    \]
+                </div>
+            </li>        
+            <li>
+                Nel secondo esempio la probabilità che la pallina si trovasse nella posizione assegnata era \(\frac{1}{16}\).
+                Per individuare la pallina sono state sufficienti \(4\) domande.
+                <div class="formula">
+                    \[
+                        p = \dfrac{1}{16} = \dfrac{1}{2^{\color{red}{}4}}\color{black}{} \,\,\Longrightarrow\,\, \#\text{domande} = \color{red}{4}
+                    \]
+                </div>
+            </li>
+         </ul>         
+         Mmmmmmm... ci viene un sospetto. Per un box di \(32\) cassetti, la probabilità che 
+         la pallina si trovi nella posizione assegnata è \(\frac{1}{32}\).
+         Imitando lo schema di prima avremmo
+         <div class="formula">
+            \[
+                p = \dfrac{1}{32} = \dfrac{1}{2^{\color{red}{}5}}\color{black}{} \,\,\Longrightarrow\,\, \#\text{domande} = \color{red}{5}
+            \]            
+        </div>        
+        Controllate voi stessi: effettivamente sono sufficienti \(5\) domande per localizzare la pallina.
+        <br>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <b>Formula esplicita</b>
+        <br>
+        <br>
+        Ora vorremmo trovare una formula esplicita che ci permetta di trovare il <i>numero di domande</i> a partire dalla <i>probabilità</i> che la pallina si trovi nella posizione assegnata.
+        <br>
+        <br>
+        Prendiamo l'esempio del box con \(8\) cassetti. 
+        <br>
+        <br>
+        <div class="slide-container grayBorder">
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+            </div>   
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Prima di tutto ribaltiamo la frazione, in modo da ottenere \(8\).
+                \[
+                    \color{transparent}{}\dfrac{1}{p} = \dfrac{1}{\frac{1}{8}} = 8
+                \]  
+            </div>
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Per farlo possiamo considerare il reciproco di \(p\)           
+                \[
+                    \color{transparent}{}\dfrac{1}{p} = \dfrac{1}{\frac{1}{8}} = 8 
+                \]
+            </div>   
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Per farlo possiamo considerare il reciproco di \(p\)           
+                \[
+                    \dfrac{1}{p} = \dfrac{1}{\frac{1}{8}}
+                \]
+            </div>   
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Per farlo possiamo considerare il reciproco di \(p\)           
+                \[
+                    \dfrac{1}{p} = 8
+                \]
+            </div> 
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Ora scriviamo \(8\) come potenza di \(2\).        
+                \[
+                    \dfrac{1}{p} = 8
+                \]
+            </div>
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Ora scriviamo \(8\) come potenza di \(2\).        
+                \[
+                    \dfrac{1}{p} = 2^{\color{red}{}3}
+                \]
+            </div>           
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Il numero di domande è l'esponente \(\color{red}{}3\).
+                \[
+                    \dfrac{1}{p} = 2^{\color{red}{}3}
+                \]
+            </div>           
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Riscriviamo quest'affermazione attraverso il logaritmo.
+                \[
+                    \dfrac{1}{p} = 2^{\color{red}{}3}
+                \]
+            </div>           
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                \(\color{red}{3}\) è l'esponente che assegnato a \(2\) dà come risultato \(\frac{1}{p}\)
+                \[
+                    \dfrac{1}{p} = 2^{\color{red}{}3}
+                \]
+            </div>           
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                \(\color{red}{3}\) è l'esponente che assegnato a \(2\) dà come risultato \(\frac{1}{p}\)
+                \[
+                    \dfrac{1}{p} = 2^{\color{red}{}3}
+                \]
+                \[
+                    \color{red}{3}\color{black}{} = log_{_2}\left(\frac{1}{p}\right)
+                \]
+            </div>  
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                \(\color{red}{3}\) è l'esponente che assegnato a \(2\) dà come risultato \(\frac{1}{p}\)            
+                \[
+                    \color{red}{3}\color{black}{} = log_{_2}\left(\frac{1}{p}\right)
+                \]
+            </div>  
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Abbiamo così espresso il numero di domande in funzione della probabilità \(p\).
+                \[
+                    \color{red}{3}\color{black}{} = log_{_2}\left(\frac{1}{p}\right)
+                \]
+            </div>           
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Abbiamo così espresso il numero di domande in funzione della probabilità \(p\).
+                \[
+                    \color{red}{\#\,\text{domande}{}}\color{black}{} = log_{_2}\left(\frac{1}{p}\right)
+                \]
+            </div> 
+            <div class="slide3">            
+                La probabilità \(p\) che la pallina si trovi nella posizione assegnata è 
+                \[
+                    p = \dfrac{1}{8}
+                \]
+                Abbiamo così espresso il numero di domande in funzione della probabilità \(p\).
+                \[
+                    \#\,\text{domande}\color{black}{} = log_{_2}\left(\frac{1}{p}\right)
+                \]
+            </div>           
+        </div>
+        <div style="display: flex; flex-direction:row; justify-content: space-evenly; align-items: center;">
+            <button id="previousSlide-button3" onclick="previousSlide(3)">Indietro</button>
+            <button id="nextSlide-button3" onclick="nextSlide(3)">Avanti</button>
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        
+        <b>Informazione intrinseca di un evento</b>
+        <br>
+        <br>
+        Finora abbiamo parlato di <i>"numero di domande necessarie per capire se si è verificato un dato evento"</i>. In realtà siamo in presenza 
+        di un concetto ben più importante. Tale numero è legato all'<b>informazione</b> che è associata al verificarsi di un evento.
+        Per usare una metafora poliziesca: più hanno peso le informazioni che vogliamo ottenere, più 
+        lungo è l'interrogatorio al quale dovremo sottoporre chi possiede l'informazioni.
+        
+        
+        <br>
+        <br>
+        <div class="grayBackground">
+            Consideriamo un evento \(E\) che si realizzi con probabilità \(p\). L'<b>informazione intrinseca</b> di \(E\) è 
+            \[
+                I = log_{_2}\left(\dfrac{1}{p}\right)
+            \]
+            L'unità di misura dell'informazione intrinseca è il \(bit\).
+        </div>
+
+        <br>        
+
+        
+        Applichiamo questo nuovo concetto ad un caso diverso da quello della pallina nascosta nel box.
+        <br>
+        <br>
+        <b>Esempio 1</b> 
+        <br>
+        <div class="slide-container grayBorder">
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi:
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+            </div>                   
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.              
+            </div>                   
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+                
+            </div> 
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{\color{transparent}{12}}{\color{transparent}{52}}
+                \]
+            </div>      
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,\color{red}{}J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,\color{red}{}J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,\color{red}{}J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,\color{red}{}J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{\color{transparent}{12}}{\color{transparent}{52}}
+                \]
+            </div>  
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{\color{red}{12}}{\color{transparent}{52}}
+                \]
+            </div>  
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \color{red}{}\begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{\color{transparent}{52}}
+                \]
+            </div>               
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{\color{red}{52}}
+                \]
+            </div>
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{52}
+                \]
+
+                Ora applichiamo la definizione di <b>informazione intrinseca</b>
+                \[
+                    I = log_{2}\left(\dfrac{1}{p}\right) 
+                \]
+            </div>  
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    \color{red}{}p = \dfrac{12}{52}
+                \]
+
+                Ora applichiamo la definizione di <b>informazione intrinseca</b>
+                \[
+                    I = log_{2}\left(\dfrac{1}{p}\right) 
+                \]
+            </div>
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{52}
+                \]
+
+                Ora applichiamo la definizione di <b>informazione intrinseca</b>
+                \[
+                    I = log_{2}\left(\dfrac{1}{\color{red}{}\frac{12}{52}}\right) 
+                \]
+            </div>    
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{52}
+                \]
+
+                Ora applichiamo la definizione di <b>informazione intrinseca</b>
+                \[
+                    I = log_{2}\left(\dfrac{52}{12}\right) 
+                \]
+            </div>      
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{52}
+                \]
+
+                Ora applichiamo la definizione di <b>informazione intrinseca</b>
+                \[
+                    I = log_{2}\left(\dfrac{52}{12}\right) \approx 2.11\,bit
+                \]
+            </div>
+            <div class="slide4">            
+                Consideriamo un mazzo di carte francesi
+                <div class="formula" style="font-size: 0.8rem;">
+                    \[
+                        \begin{align*}
+                            1\heartsuit\,\,2\heartsuit\,\,3\heartsuit\,\,4\heartsuit\,\,5\heartsuit\,\,6\heartsuit\,\,7\heartsuit\,\,8\heartsuit\,\,9\heartsuit\,\,10\heartsuit\,\,J\heartsuit\,\,Q\heartsuit\,\,K\heartsuit
+                            \\\\
+                            1\diamondsuit\,\,2\diamondsuit\,\,3\diamondsuit\,\,4\diamondsuit\,\,5\diamondsuit\,\,6\diamondsuit\,\,7\diamondsuit\,\,8\diamondsuit\,\,9\diamondsuit\,\,10\diamondsuit\,\,J\diamondsuit\,\,Q\diamondsuit\,\,K\diamondsuit
+                            \\\\                        
+                            1\clubsuit\,\,2\clubsuit\,\,3\clubsuit\,\,4\clubsuit\,\,5\clubsuit\,\,6\clubsuit\,\,7\clubsuit\,\,8\clubsuit\,\,9\clubsuit\,\,10\clubsuit\,\,J\clubsuit\,\,Q\clubsuit\,\,K\clubsuit
+                            \\\\
+                            1\spadesuit\,\,2\spadesuit\,\,3\spadesuit\,\,4\spadesuit\,\,5\spadesuit\,\,6\spadesuit\,\,7\spadesuit\,\,8\spadesuit\,\,9\spadesuit\,\,10\spadesuit\,\,J\spadesuit\,\,Q\spadesuit\,\,K\spadesuit
+                        \end{align*}
+                    \]
+                </div>
+                Peschiamo una carta dal mazzo.
+                <br>
+                Qual é l'informazione associata all'evento \(E\) <i>"esce una figura"</i>?   
+
+                <br>
+                <br>
+
+                Prima di tutto calcoliamo la probabilità \(p\) che si verifichi l'evento.
+                \[
+                    p = \dfrac{12}{52}
+                \]
+
+                Ora applichiamo la definizione di <b>informazione intrinseca</b>
+                \[
+                    I = log_{2}\left(\dfrac{52}{12}\right) \approx 2.11\,bit
+                \]
+                Questo ci dice che in media avremo bisogo di \(2\) o \(3\) domande per scoprire 
+                se è stata estratta dal mazzo una figura.
+            </div>      
+        </div>
+        <div style="display: flex; flex-direction:row; justify-content: space-evenly; align-items: center;">
+            <button id="previousSlide-button4" onclick="previousSlide(4)">Indietro</button>
+            <button id="nextSlide-button4" onclick="nextSlide(4)">Avanti</button>
+        </div>
+
+
+
+    </div>    
+    
+
+    
+    <br>
+    <br>
+    
+    <script src="../../../js/hintAndSlide.js"></script>
+</body>
